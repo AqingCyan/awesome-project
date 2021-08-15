@@ -1,6 +1,7 @@
 <template>
-  <h3>{{ item.title }}</h3>
-  - <small>{{ item.user.name }}</small>
+  <h3>
+    {{ item.title }} - <small>{{ item.user.name }}</small>
+  </h3>
 </template>
 
 <script>

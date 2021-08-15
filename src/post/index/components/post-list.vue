@@ -9,7 +9,7 @@ import { mapGetters, mapActions } from 'vuex';
 import PostListItem from './post-list-item';
 
 export default defineComponent({
-  async created() {
+  created() {
     this.getPosts();
   },
 

@@ -1,11 +1,18 @@
 <template>
-  <div>Hello World</div>
+  <div>Hello World ：） {{ isLoggedIn }}</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'appHome',
-  components: {},
+  name: 'AppHome',
+
+  computed: {
+    ...mapGetters({
+      isLoggedIn: 'auth/isLoggedIn',
+    }),
+  },
 };
 </script>
 

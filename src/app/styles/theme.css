@@ -13,6 +13,10 @@
   /* Line */
   --light-color: #e1e3e7;
   --hightlight-line-color: #000000;
+
+  /* Button */
+  --primary-button-backgroun: #000000;
+  --outline-button-color: #000000;
 }
 
 .page.dark {
@@ -30,4 +34,8 @@
   /* Line */
   --light-color: #383838;
   --hightlight-line-color: #555555;
+
+  /* Button */
+  --primary-button-backgroun: #555555;
+  --outline-button-color: #555555;
 }

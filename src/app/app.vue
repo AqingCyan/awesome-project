@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { socket } from '@/app/app.service';
+
 export default {
   data() {
     return {
@@ -15,6 +17,10 @@ export default {
 
   created() {
     console.log(this.$store.state);
+
+    socket.on('connect', () => {
+      console.log('connect', socket.id);
+    });
   },
 };
 </script>

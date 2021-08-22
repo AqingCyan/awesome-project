@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { postStoreModule, PostStoreState } from '@/post/post.stroe';
 import { layoutStoreModule, LayoutStoreState } from './layout/layout.store';
+import { localStorageStorePlugin } from '@/app/app.store.plugin';
 
 export interface RootState {
   appName: string;
@@ -20,6 +21,8 @@ const store = createStore({
     post: postStoreModule,
     layout: layoutStoreModule,
   },
+
+  plugins: [localStorageStorePlugin],
 });
 
 /**

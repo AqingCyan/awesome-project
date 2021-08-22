@@ -10,9 +10,10 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import PageHeader from './components/page-header';
 import PageAside from './components/page-aside';
+import { getStorage } from '../app.service';
 
 export default defineComponent({
   name: 'AppLayout',
@@ -35,6 +36,23 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       theme: 'layout/theme',
+    }),
+  },
+
+  created() {
+    const theme = getStorage('theme');
+
+    if (theme) {
+      this.setTheme(theme);
+    }
+  },
+
+  /**
+   * 组件方法
+   */
+  methods: {
+    ...mapMutations({
+      setTheme: 'layout/setTheme',
     }),
   },
 

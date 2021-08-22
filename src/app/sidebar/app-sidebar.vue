@@ -1,6 +1,7 @@
 <template>
   <div class="app-sidebar">
     <AppSidebarItemBrand />
+    <AppSidebarItemUser />
     <AppSidebarItemPopular />
     <AppSidebarItemAdd />
     <AppSidebarItemTheme />
@@ -13,6 +14,7 @@ import AppSidebarItemBrand from './components/app-sidebar-item-brand';
 import AppSidebarItemPopular from './components/app-sidebar-item-popular';
 import AppSidebarItemAdd from './components/app-sidebar-item-add';
 import AppSidebarItemTheme from './components/app-sidebar-item-theme';
+import AppSidebarItemUser from './components/app-sidebar-item-user';
 
 export default defineComponent({
   name: 'AppSidebar',
@@ -42,6 +44,7 @@ export default defineComponent({
     AppSidebarItemPopular,
     AppSidebarItemAdd,
     AppSidebarItemTheme,
+    AppSidebarItemUser,
   },
 });
 </script>

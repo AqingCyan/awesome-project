@@ -56,6 +56,7 @@ export default defineComponent({
   methods: {
     ...mapActions({
       login: 'auth/login/login',
+      pushMessage: 'notification/pushMessage',
     }),
     async onClickLoginButton() {
       try {
@@ -63,8 +64,16 @@ export default defineComponent({
           name: this.name,
           password: this.password,
         });
-        console.log(response);
+
+        this.pushMessage({
+          content: `欢迎回来 ${response.data.name}`,
+          icon: 'emoji_emotions',
+        });
       } catch (error) {
+        this.pushMessage({
+          content: error.data.message,
+          icon: 'error',
+        });
         console.error(error);
       }
     },

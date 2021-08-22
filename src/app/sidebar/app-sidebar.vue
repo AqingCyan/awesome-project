@@ -1,16 +1,18 @@
 <template>
   <div class="app-sidebar">
-    <AppSideBarItemBrand />
-    <AppSideBarItemPopular />
-    <AppSideBarItemAdd />
+    <AppSidebarItemBrand />
+    <AppSidebarItemPopular />
+    <AppSidebarItemAdd />
+    <AppSidebarItemTheme />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppSideBarItemBrand from './components/app-sidebar-item-brand';
-import AppSideBarItemPopular from './components/app-sidebar-item-popular';
-import AppSideBarItemAdd from './components/app-sidebar-item-add';
+import AppSidebarItemBrand from './components/app-sidebar-item-brand';
+import AppSidebarItemPopular from './components/app-sidebar-item-popular';
+import AppSidebarItemAdd from './components/app-sidebar-item-add';
+import AppSidebarItemTheme from './components/app-sidebar-item-theme';
 
 export default defineComponent({
   name: 'AppSidebar',
@@ -36,9 +38,10 @@ export default defineComponent({
    * 组件
    */
   components: {
-    AppSideBarItemBrand,
-    AppSideBarItemPopular,
-    AppSideBarItemAdd,
+    AppSidebarItemBrand,
+    AppSidebarItemPopular,
+    AppSidebarItemAdd,
+    AppSidebarItemTheme,
   },
 });
 </script>

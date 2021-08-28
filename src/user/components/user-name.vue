@@ -2,7 +2,7 @@
   <div :class="userNameClasses">
     <div class="user-name-text">
       <router-link :to="userNameLinkTo" class="link">
-        {{ user.name }}
+        {{ user?.name }}
       </router-link>
     </div>
   </div>
@@ -43,10 +43,13 @@ export default defineComponent({
     },
 
     userNameLinkTo() {
-      return {
-        name: 'userPosts',
-        params: { userId: this.user.id },
-      };
+      if (this.user?.id) {
+        return {
+          name: 'userPosts',
+          params: { userId: this.user.id },
+        };
+      }
+      return 'login';
     },
   },
 

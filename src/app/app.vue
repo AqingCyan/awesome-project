@@ -26,6 +26,13 @@ export default {
       this.configApiHttpClientAuthHeader(token);
     }
 
+    // 当前用户
+    const userId = getStorage('uid');
+
+    if (userId) {
+      this.getCurrentUser(userId);
+    }
+
     socket.on('connect', () => {
       console.log('connect', socket.id);
     });
@@ -38,6 +45,7 @@ export default {
 
     ...mapActions({
       configApiHttpClientAuthHeader: 'auth/configApiHttpClientAuthHeader',
+      getCurrentUser: 'user/getCurrentUser',
     }),
   },
 

@@ -18,6 +18,11 @@
   z-index: 9999;
 
   background: var(--page-header-background);
+  transition: box-shadow 1s;
+}
+
+.page-header.shadow {
+  box-shadow: 20px 30px 30px rgba(0, 0, 0, 0.1);
 }
 
 .page-header > .container {

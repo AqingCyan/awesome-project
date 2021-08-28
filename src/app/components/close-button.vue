@@ -1,31 +1,24 @@
 <template>
-  <div class="field">
-    <button :class="['button', size, type]" @click="$emit('click')">
-      {{ text }}
+  <div :class="['close-button', align]">
+    <button class="button basic" @click="$emit('click')">
+      <AppIcon name="close" />
     </button>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppIcon from '@/app/components/app-icon';
 
 export default defineComponent({
-  name: 'ButtonField',
+  name: 'CloseButton',
 
   /**
    * 属性
    */
   props: {
-    text: {
+    align: {
       type: String,
-    },
-
-    size: {
-      type: String,
-    },
-
-    type: {
-      outline: String,
     },
   },
 
@@ -49,8 +42,12 @@ export default defineComponent({
   /**
    * 组件
    */
-  components: {},
+  components: {
+    AppIcon,
+  },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import 'styles/close-button.css';
+</style>

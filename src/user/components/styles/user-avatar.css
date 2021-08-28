@@ -19,3 +19,7 @@
   width: 128px;
   height: 128px;
 }
+
+.user-avatar.fade {
+  opacity: 0.3;
+}

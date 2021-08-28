@@ -4,7 +4,7 @@
       <h1 class="header">用户登录</h1>
       <TextField v-model="name" placeholder="用户" />
       <TextField type="password" v-model="password" placeholder="密码" />
-      <ButtonField text="LOGIN" size="large" @click="onClickLoginButton" />
+      <ButtonField text="登录" size="large" @click="onClickLoginButton" />
     </div>
   </div>
 </template>
@@ -69,6 +69,8 @@ export default defineComponent({
           content: `欢迎回来 ${response.data.name}`,
           icon: 'emoji_emotions',
         });
+
+        this.$router.back();
       } catch (error) {
         this.pushMessage({
           content: error.data.message,

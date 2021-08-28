@@ -1,10 +1,10 @@
 <template>
   <div class="user-show" v-if="user">
     <div class="user-show-header">
-      <UserAvatar :user="this.user" size="large" />
-      <UserName :user="this.user" size="large" />
+      <UserAvatar :user="user" size="large" />
+      <UserName :user="user" size="large" />
     </div>
-    <UserShowMenu />
+    <UserShowMenu :user="user" />
     <div class="user-show-body">
       <router-view></router-view>
     </div>
@@ -44,6 +44,15 @@ export default defineComponent({
     ...mapGetters({
       user: 'user/show/user',
     }),
+  },
+
+  /**
+   * 监视
+   */
+  watch: {
+    userId() {
+      this.getUserById(this.userId);
+    },
   },
 
   created() {

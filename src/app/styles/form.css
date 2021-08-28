@@ -30,3 +30,19 @@
 .field > .input.text:focus {
   border-bottom: 1px solid var(--hightlight-line-color);
 }
+
+.field > .input.hide {
+  display: none;
+}
+
+.fields {
+  display: flex;
+}
+
+.fields > .field {
+  margin-right: 16px;
+}
+
+.fields > .field:last-child {
+  margin-right: 0;
+}

@@ -5,10 +5,15 @@ import {
   userShowStoreModule,
   UserShowStoreState,
 } from '@/user/show/user-show.store';
+import {
+  userAccountStoreModule,
+  UserAccountStoreState,
+} from '@/user/account/user-account.store';
 
 export interface UserStoreState {
   currentUser: User | null;
   show: UserShowStoreState;
+  account: UserAccountStoreState;
 }
 
 export const userStoreModule: Module<UserStoreState, RootState> = {
@@ -48,5 +53,6 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
 
   modules: {
     show: userShowStoreModule,
+    account: userAccountStoreModule,
   },
 };

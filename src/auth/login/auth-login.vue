@@ -66,14 +66,14 @@ export default defineComponent({
         });
 
         this.pushMessage({
-          content: `欢迎回来 ${response.data.name}`,
+          content: `欢迎回来 ${response.data.name} 🥳`,
           icon: 'emoji_emotions',
         });
 
         this.$router.back();
       } catch (error) {
         this.pushMessage({
-          content: error.data.message,
+          content: `${error.data.message} 🚧`,
           icon: 'error',
         });
         console.error(error);

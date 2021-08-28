@@ -21,6 +21,16 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
     user: null,
   } as UserShowStoreState,
 
+  getters: {
+    loading(state) {
+      return state.loading;
+    },
+
+    user(state) {
+      return state.user;
+    },
+  },
+
   mutations: {
     setLoading(state, data) {
       state.loading = data;

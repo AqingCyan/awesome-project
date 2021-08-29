@@ -7,12 +7,6 @@ import {
 import { postIndexStoreModule } from '@/post/index/post-index.store';
 import { postShowStoreModule } from '@/post/show/post-show';
 
-export interface PostItem {
-  id: number;
-  title: string;
-  content: string;
-}
-
 export interface PostStoreState {
   create: PostCreateStoreState;
 }

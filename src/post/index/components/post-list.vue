@@ -1,28 +1,46 @@
 <template>
-  <div class="post-list">
+  <div :class="postListClasses">
     <PostListItem v-for="post in posts" :item="post" :key="post.id" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
+import { getStorage } from '@/app/app.service';
 import PostListItem from './post-list-item';
 
 export default defineComponent({
   async created() {
     await this.getPosts();
-    console.log(this.posts);
+
+    // 内容列表布局
+    const layout = getStorage('post-list-layout');
+
+    if (layout) {
+      this.setLayout(layout);
+    } else {
+      this.setLayout('flow');
+    }
   },
 
   computed: {
     ...mapGetters({
       loading: 'post/index/loading',
       posts: 'post/index/posts',
+      layout: 'post/index/layout',
     }),
+
+    postListClasses() {
+      return ['post-list', this.layout];
+    },
   },
 
   methods: {
+    ...mapMutations({
+      setLayout: 'post/index/setLayout',
+    }),
+
     ...mapActions({
       getPosts: 'post/index/getPosts',
     }),

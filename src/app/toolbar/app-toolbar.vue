@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="app-toolbar">
+      <div class="app-toolbar-item layout" v-if="showPostListLayoutSwitcher">
+        <PostListLayoutSwitcher />
+      </div>
       <AppToolbarItemSearch />
     </div>
   </div>
@@ -8,7 +11,9 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 import AppToolbarItemSearch from './components/app-toolbar-item-search';
+import PostListLayoutSwitcher from '@/post/index/components/post-list-layout-switcher';
 
 export default defineComponent({
   name: 'AppToolbar',
@@ -28,13 +33,18 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      showPostListLayoutSwitcher: 'toolbar/showPostListLayoutSwitcher',
+    }),
+  },
 
   /**
    * 组件
    */
   components: {
     AppToolbarItemSearch,
+    PostListLayoutSwitcher,
   },
 });
 </script>

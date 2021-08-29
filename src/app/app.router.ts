@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { appToolbarItemGuard } from '@/app/app.router.guard';
 import appRoutes from '@/app/app.routes';
 import postRoutes from '@/post/post.routes';
 import authRoutes from '@/auth/auth.routes';
@@ -11,6 +12,11 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [...appRoutes, ...postRoutes, ...authRoutes, ...userRoutes],
 });
+
+/**
+ * 工具栏项目守卫
+ */
+router.beforeEach(appToolbarItemGuard);
 
 /**
  * 默认导出

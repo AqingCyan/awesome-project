@@ -25,6 +25,10 @@ export const localStorageStorePlugin: Plugin<RootState> = store => {
         // 当布局设置变化，缓存用户的布局设置
         setStorage('post-list-layout', mutation.payload);
         break;
+      case 'post/show/setLayout':
+        // 当布局设置变化，缓存用户的布局设置
+        setStorage('post-show-layout', mutation.payload);
+        break;
     }
   });
 };

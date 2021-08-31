@@ -5,7 +5,7 @@ import {
   PostCreateStoreState,
 } from '@/post/create/post-create.store';
 import { postIndexStoreModule } from '@/post/index/post-index.store';
-import { postShowStoreModule } from '@/post/show/post-show';
+import { postShowStoreModule } from '@/post/show/post-show.store';
 
 export interface PostStoreState {
   create: PostCreateStoreState;

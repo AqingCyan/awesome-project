@@ -1,6 +1,12 @@
 <template>
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
+    <div class="section meta actions">
+      <div>File Meta</div>
+      <PostShowActions :post="post" />
+    </div>
+    <PostShowHeader :post="post" />
+    <PostShowContent :post="post" />
   </div>
 </template>
 
@@ -8,7 +14,10 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 import { defineComponent } from 'vue';
 import { getStorage } from '@/app/app.service';
-import PostShowMedia from './components/post-show-media';
+import PostShowMedia from '@/post/show/components/post-show-media';
+import PostShowHeader from '@/post/show/components/post-show-header';
+import PostShowContent from '@/post/show/components/post-show-content';
+import PostShowActions from '@/post/show/components/post-show-actions';
 
 export default defineComponent({
   title() {
@@ -64,7 +73,10 @@ export default defineComponent({
   },
 
   components: {
+    PostShowActions,
+    PostShowContent,
     PostShowMedia,
+    PostShowHeader,
   },
 });
 </script>

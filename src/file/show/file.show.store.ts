@@ -95,7 +95,7 @@ export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
                 : `1/${Math.round(1 / ExposureTime)}s`
               : '',
           },
-          { title: '感光', value: `${ISO}` },
+          { title: '感光', value: ISO ? `${ISO}` : '' },
         ];
       }
 

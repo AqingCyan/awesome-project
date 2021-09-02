@@ -2,7 +2,7 @@
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
     <div class="section meta actions">
-      <div>File Meta</div>
+      <PostShowFileMeta :post="post" />
       <PostShowActions :post="post" />
     </div>
     <PostShowHeader :post="post" />
@@ -18,6 +18,7 @@ import PostShowMedia from '@/post/show/components/post-show-media';
 import PostShowHeader from '@/post/show/components/post-show-header';
 import PostShowContent from '@/post/show/components/post-show-content';
 import PostShowActions from '@/post/show/components/post-show-actions';
+import PostShowFileMeta from '@/post/show/components/post-show-file-meta';
 
 export default defineComponent({
   title() {
@@ -77,6 +78,7 @@ export default defineComponent({
     PostShowContent,
     PostShowMedia,
     PostShowHeader,
+    PostShowFileMeta,
   },
 });
 </script>

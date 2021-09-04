@@ -4,7 +4,7 @@ import { apiHttpClient, queryStringProcess } from '@/app/app.service';
 import { User } from '@/user/show/user-show.store';
 import { APP_POST_PER_PAGE } from '@/app/app.config';
 import { StringifiableRecord } from 'query-string';
-import { postFileProcess } from '@/post/post.service';
+import { filterProcess, postFileProcess } from '@/post/post.service';
 
 export interface PostListItem {
   id: number;
@@ -34,10 +34,17 @@ export interface PostIndexStoreState {
   nextPage: number;
   totalPages: number;
   queryString: string;
+  filter: { [name: string]: string } | null;
 }
 
 export interface GetPostsOptions {
   sort?: string;
+  filter?: { [name: string]: string };
+}
+
+export interface FilterItem {
+  title?: string;
+  value?: string;
 }
 
 export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
@@ -50,6 +57,7 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
     nextPage: 1,
     totalPages: 1,
     queryString: '',
+    filter: null,
   } as PostIndexStoreState,
 
   getters: {
@@ -67,6 +75,28 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
     hasMore(state) {
       return state.totalPages - state.nextPage >= 0;
+    },
+
+    filterItems(state) {
+      const items: Array<FilterItem> = [];
+
+      if (state.filter) {
+        Object.keys(state.filter).forEach(filterName => {
+          const item: FilterItem = {};
+
+          switch (filterName) {
+            case 'tag':
+              item.title = '标签';
+              break;
+          }
+
+          if (item.title && state.filter) {
+            item.value = state.filter[filterName];
+            items.push(item);
+          }
+        });
+      }
+      return items;
     },
   },
 
@@ -97,6 +127,10 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
     setQueryString(state, data) {
       state.queryString = data;
+    },
+
+    setFilter(state, data) {
+      state.filter = filterProcess(data);
     },
   },
 
@@ -133,9 +167,11 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
      */
     getPostsPreProcess({ commit, state }, options: GetPostsOptions) {
       commit('setLoading', true);
+      commit('setFilter', options.filter);
 
       const getPostsQueryObject: StringifiableRecord = {
         sort: options.sort,
+        ...state.filter,
       };
 
       const getPostsQueryString = queryStringProcess(getPostsQueryObject);

@@ -15,18 +15,24 @@ import PostListItem from './post-list-item';
 import PostListItemSkeleton from './post-list-item-skeleton';
 
 export default defineComponent({
+  props: {
+    sort: {
+      type: String,
+    },
+
+    filter: {
+      type: Object,
+    },
+  },
+
   data() {
     return {
       prevScrollTop: 0,
-      sort: '',
     };
   },
 
   async created() {
-    this.sort =
-      this.$route.name === 'postIndexPopular' ? 'most_comments' : 'latest';
-
-    await this.getPosts({ sort: this.sort });
+    await this.getPosts({ sort: this.sort, filter: this.filter });
 
     // 内容列表布局
     const layout = getStorage('post-list-layout');
@@ -84,11 +90,20 @@ export default defineComponent({
         const scrollDown = scrollTop > this.prevScrollTop; // 判断是否是垂直向下滚动的，而不是向上
 
         if (touchDown && scrollDown && !this.loading && this.hasMore) {
-          this.getPosts({ sort: this.sort });
+          this.getPosts({ sort: this.sort, filter: this.filter });
         }
 
         this.prevScrollTop = scrollTop;
       }
+    },
+  },
+
+  /**
+   * 监视
+   */
+  watch: {
+    filter() {
+      this.getPosts({ sort: this.sort, filter: this.filter });
     },
   },
 

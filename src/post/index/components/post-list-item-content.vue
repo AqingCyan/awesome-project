@@ -1,14 +1,14 @@
 <template>
   <div class="post-list-item-content">
     <div class="thumbnail">
-      <UserAvatar :user="item.user" />
+      <UserAvatar :user="item.user" link="user" />
     </div>
 
     <div class="header">
       <div class="text">
-        <router-link class="link" :to="itemLinkTo">{{
-          item.title
-        }}</router-link>
+        <router-link class="link" :to="itemLinkTo">
+          {{ item.title }}
+        </router-link>
       </div>
       <div class="meta">
         <UserName :user="item.user" />

@@ -1,9 +1,17 @@
 <template>
   <div class="post-show-navigator">
-    <button class="button basic" @click="onClickBackButton">
+    <button
+      class="button basic"
+      @click="onClickBackButton"
+      :disabled="!canNavigatorBack"
+    >
       <AppIcon name="arrow_back" />
     </button>
-    <button class="button basic" @click="onClickForwardButton">
+    <button
+      class="button basic"
+      @click="onClickForwardButton"
+      :disabled="!canNavigatorForward"
+    >
       <AppIcon name="arrow_forward" />
     </button>
   </div>
@@ -11,7 +19,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import AppIcon from '@/app/components/app-icon';
 
 export default defineComponent({
@@ -32,7 +40,12 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      canNavigatorBack: 'post/show/canNavigatorBack',
+      canNavigatorForward: 'post/show/canNavigatorForward',
+    }),
+  },
 
   /**
    * 方法

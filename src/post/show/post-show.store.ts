@@ -69,6 +69,19 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     nextPost(_, getters, rootState) {
       return rootState.post.index.posts[getters.currentPostIndex + 1];
     },
+
+    canNavigatorBack(_, getters, rootState) {
+      return (
+        rootState.post.index.posts.length > 0 && getters.currentPostIndex !== 0
+      );
+    },
+
+    canNavigatorForward(_, getters, rootState) {
+      return (
+        rootState.post.index.posts.length > 0 &&
+        getters.currentPostIndex + 1 !== rootState.post.index.posts.length
+      );
+    },
   },
 
   mutations: {
@@ -102,6 +115,8 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     },
 
     async goGetPrevPost({ getters, dispatch }) {
+      if (!getters.canNavigatorBack) return;
+
       try {
         const response = await dispatch('getPostById', getters.prevPost.id);
 
@@ -119,6 +134,8 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     },
 
     async goGetNextPost({ getters, dispatch }) {
+      if (!getters.canNavigatorForward) return;
+
       try {
         const response = await dispatch('getPostById', getters.nextPost.id);
 

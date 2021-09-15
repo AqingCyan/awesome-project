@@ -1,6 +1,11 @@
 <template>
-  <div class="post-show-media">
-    <img class="image" :src="post.file.size.large" alt="内容图片" />
+  <div :class="postShowMediaClasses">
+    <img
+      class="image"
+      :src="post.file.size.large"
+      alt="内容图片"
+      @load="onLoadImage"
+    />
   </div>
 </template>
 
@@ -23,13 +28,28 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      loading: true,
+    };
   },
 
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    postShowMediaClasses() {
+      return ['post-show-media', { loading: this.loading }];
+    },
+  },
+
+  /**
+   * 方法
+   */
+  methods: {
+    onLoadImage() {
+      this.loading = false;
+    },
+  },
 
   /**
    * 组件

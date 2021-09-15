@@ -48,12 +48,31 @@ export default defineComponent({
   },
 
   /**
+   * 已创建
+   */
+  created() {
+    if (window) {
+      window.addEventListener('keyup', this.onKeyUpWindow);
+    }
+  },
+
+  /**
+   * 卸载
+   */
+  unmounted() {
+    if (window) {
+      window.removeEventListener('keyup', this.onKeyUpWindow);
+    }
+  },
+
+  /**
    * 方法
    */
   methods: {
     ...mapActions({
       goGetPrevPost: 'post/show/goGetPrevPost',
       goGetNextPost: 'post/show/goGetNextPost',
+      pushMessage: 'notification/pushMessage',
     }),
 
     onClickBackButton() {
@@ -62,6 +81,27 @@ export default defineComponent({
 
     onClickForwardButton() {
       this.goGetNextPost();
+    },
+
+    onKeyUpWindow(event) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          if (this.canNavigatorBack) {
+            this.goGetPrevPost();
+          } else {
+            this.pushMessage({ content: '前面没有内容了' });
+          }
+          break;
+        case 'ArrowRight':
+          if (this.canNavigatorForward) {
+            this.goGetNextPost();
+          } else {
+            this.pushMessage({ content: '后面没有内容了' });
+          }
+          break;
+        default:
+          break;
+      }
     },
   },
 

@@ -1,13 +1,15 @@
 <template>
   <div class="page-side-sheet" v-if="sideSheetComponent">
+    <CloseButton @click="onClickCloseButton" />
     <component :is="sideSheetComponent"></component>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import CommentSideSheet from '@/comment/components/comment-side-sheet';
+import CloseButton from '@/app/components/close-button';
 
 export default defineComponent({
   name: 'PageSideSheet',
@@ -34,9 +36,45 @@ export default defineComponent({
   },
 
   /**
+   * 已创建
+   */
+  created() {
+    if (window) {
+      window.addEventListener('keyup', this.onKeyupWindow);
+    }
+  },
+
+  /**
+   * 卸载组件
+   */
+  unmounted() {
+    if (window) {
+      window.removeEventListener('keyup', this.onKeyupWindow);
+    }
+  },
+
+  /**
+   * 方法
+   */
+  methods: {
+    ...mapMutations({ resetSideSheet: 'layout/resetSideSheet' }),
+
+    onClickCloseButton() {
+      this.resetSideSheet();
+    },
+
+    onKeyupWindow(event) {
+      if (event.key === 'Escape') {
+        this.onClickCloseButton();
+      }
+    },
+  },
+
+  /**
    * 组件
    */
   components: {
+    CloseButton,
     CommentSideSheet,
   },
 });

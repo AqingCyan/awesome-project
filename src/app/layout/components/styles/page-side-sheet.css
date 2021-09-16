@@ -12,3 +12,9 @@
   border-top-left-radius: 10px;
   box-shadow: -30px 30px 30px rgba(0, 0, 0, 0.1);
 }
+
+.page-side-sheet > .close-button {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}

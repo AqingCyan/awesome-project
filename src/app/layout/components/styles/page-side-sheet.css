@@ -18,3 +18,21 @@
   top: 16px;
   left: 16px;
 }
+
+.page-side-sheet-enter-active {
+  transform: translateX(360px);
+  transition: 0.25s;
+}
+
+.page-side-sheet-enter-to {
+  transform: translateX(0);
+}
+
+.page-side-sheet-leave-active {
+  transform: translateX(0);
+  transition: 0.25s;
+}
+
+.page-side-sheet-leave-to {
+  transform: translateX(360px);
+}

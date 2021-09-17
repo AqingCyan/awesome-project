@@ -6,7 +6,7 @@
   z-index: 666;
   max-width: 330px;
   min-width: 330px;
-  overflow: scroll;
+  overflow: auto;
   box-sizing: border-box;
   background: var(--page-side-sheet-background);
   border-top-left-radius: 10px;
